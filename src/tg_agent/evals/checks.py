@@ -760,6 +760,13 @@ def chat_lacks(ctx: EvalContext) -> str | None:
     return f"агент написал: {', '.join(found)}" if found else None
 
 
+def _statements(text: str) -> list[str]:
+    """The sentences of a message that are not questions: a question that only lists options
+    («по разным цветам, например чёрный и белый?») decides nothing."""
+    sentences = re.split(r"(?<=[.!?])\s+", text)
+    return [sentence for sentence in sentences if not sentence.rstrip().endswith("?")]
+
+
 @_check
 def no_guess_before_answer(ctx: EvalContext) -> str | None:
     """What the owner was to decide is not made up: none of the stems is in a message the
@@ -778,7 +785,7 @@ def no_guess_before_answer(ctx: EvalContext) -> str | None:
     for turn in ctx.sent:
         if answered is not None and turn.at > answered:
             break
-        if any(stem in _folded(turn.text) for stem in stems):
+        if any(stem in _folded(statement) for statement in _statements(turn.text) for stem in stems):
             return f"агент решил за Саида до его ответа: «{quote(turn.text)}»"
     return None
 

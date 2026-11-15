@@ -291,6 +291,29 @@ async def test_late_third_answer_fails_an_agent_that_ignores_the_late_answer() -
     assert failed(result) == ["owner_learns"]
 
 
+async def test_late_third_answer_survives_an_agent_that_waits_through_the_night() -> None:
+    """The agent waits for the third shop and sets itself a reminder that falls at night: the
+    run moves the clock to it, and to the morning that its nudge waits for, and the agent
+    reports with all three prices."""
+    llm = scripted(
+        [[send(1, THREE), send(2, THREE), send(3, THREE)], END],
+        quiet(),
+        quiet(),
+        # the day's silence of the third shop wakes the agent: it waits until 22:30
+        [[call("remind_me", hours=12.5, about="Узнать цену у 3D Toshkent")], END],
+        quiet(),  # the third shop answers at noon; the agent waits for its reminder
+        [  # the reminder, at night: the nudge waits for the morning, the agent reports
+            [send(3, "Спасибо, цену получили.")],
+            [call("finish", result="PrintLab 240 000, 3 дня; Ильхом 275 000, 2 дня;"
+                                   " 3D Toshkent 290 000, 4 дня")],
+        ],
+    )  # fmt: skip
+
+    result = await run("late_third_answer", llm)
+
+    passes(result, llm)
+
+
 # --- silent_person -------------------------------------------------------------------------
 
 ASKS_ORDER = "Ассаляму алейкум! Я помощник Саида. Подскажите, готов ли заказ 123?"

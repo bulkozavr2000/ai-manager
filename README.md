@@ -120,3 +120,7 @@ back with short cards and buttons. Anything that costs money stays the owner's d
 
 Defaults describe a fictional owner; set your own name and city in `config.toml`. The prompts
 and conversations are in Russian and Uzbek.
+
+## Лицензия / License
+
+MIT — см. файл [LICENSE](LICENSE). MIT, see [LICENSE](LICENSE).

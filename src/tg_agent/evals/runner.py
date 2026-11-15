@@ -952,6 +952,7 @@ class _World:
     told: bool = False  # the owner has given his instruction
     seen: int = 0  # how many of the gateway's texts are in the chats already
     jumped: timedelta = timedelta(0)  # how far `jump` has moved the clock in all
+    slept: timedelta = timedelta(0)  # how far a waiting turn has moved it (`until_next_wake`)
 
     async def start(self) -> None:
         """Every counterpart becomes a peer of the fake Telegram; the task is made from the
@@ -1160,12 +1161,34 @@ class _World:
                 answered = await self.owner_answers()
                 if not answered and await self.settled():
                     return
-                self.clock.advance(STEP)
+                self.clock.advance(max(STEP, await self.until_next_wake()))
             raise _Stuck(
                 f"агент не успокоился за {MAX_STEPS} шагов по {STEP.seconds} с"
             )
         finally:
             self.collect()
+
+    async def until_next_wake(self) -> timedelta:
+        """How far the clock may move at once when the agent's turn only waits for a message
+        that was put off to the morning (outside working hours): the clock goes to it instead
+        of crawling there in steps of 30 s (an hour of steps is the turn's limit). Zero when
+        something is on its way now (a message being sent, one due) or nothing waits."""
+        now = self.clock.now()
+        at: list[datetime] = []
+        for conv in await self.repo.task_conversations(self.task_id):
+            for item in await self.repo.outbox_of(conv.id):
+                if item.status is OutboxStatus.SENDING:
+                    return timedelta(0)
+                if item.status is OutboxStatus.PENDING:
+                    at.append(item.not_before)
+        later = [moment for moment in at if moment > now]
+        if len(later) < len(at):
+            return timedelta(0)  # something is due already: the next tick takes it
+        step = min(later) - now if later else timedelta(0)
+        if self.slept + step > timedelta(hours=MAX_JUMP_HOURS):
+            return timedelta(0)
+        self.slept += step
+        return step
 
     def collect(self) -> None:
         """Put what the fake Telegram has been handed since the last look into the chats."""

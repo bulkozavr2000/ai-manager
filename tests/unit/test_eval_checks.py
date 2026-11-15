@@ -973,6 +973,31 @@ def test_no_guess_before_answer_fails_for_a_colour_said_before_the_answer(
     assert "белый" in result.detail
 
 
+def test_no_guess_before_answer_passes_a_question_that_only_lists_colours() -> None:
+    chat = chat_of(
+        vendor("Какого цвета пластик?", 2),
+        agent(
+            "Подскажите, пожалуйста, какая цена за 5 шт. по разным цветам, например черный и белый?",
+            3,
+        ),
+    )
+    ctx = make_ctx(
+        expect=Expect(no_guess_before_answer=STEMS), chat=chat, task_approvals=[answered(5)]
+    )
+    assert no_guess_before_answer(ctx).passed
+
+
+def test_no_guess_before_answer_fails_a_decision_next_to_a_question() -> None:
+    chat = chat_of(
+        vendor("Какого цвета пластик?", 2),
+        agent("Берём белый. А какая цена за пять штук?", 3),
+    )
+    ctx = make_ctx(
+        expect=Expect(no_guess_before_answer=STEMS), chat=chat, task_approvals=[answered(5)]
+    )
+    assert not no_guess_before_answer(ctx).passed
+
+
 # --- the new [expect] flags ------------------------------------------------------------------
 
 
