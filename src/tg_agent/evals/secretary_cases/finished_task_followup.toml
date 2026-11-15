@@ -1,0 +1,22 @@
+id = "finished_task_followup"
+about = "указание по завершённой задаче («по торту уточни…») — задаче, его словами"
+messages = ["по торту уточни еще можно ли без сахара"]
+
+[[finished]]
+id = 5
+title = "Торт на субботу"
+brief = "Заказать торт на 10 человек"
+headline = "Готово: торт заказан у Sweet Lab, заберёте в субботу в 12:00"
+
+[[chat]]
+from = "bot"
+text = "✅ Готово — «Торт на субботу»: торт заказан у Sweet Lab, заберёте в субботу в 12:00"
+
+[expect]
+drafts_made = 0
+only_tools = ["instruct_task"]
+quotes_ok = true
+
+[[expect.calls]]
+tool = "instruct_task"
+args = { task_id = 5, quote = { has = "сахар" } }

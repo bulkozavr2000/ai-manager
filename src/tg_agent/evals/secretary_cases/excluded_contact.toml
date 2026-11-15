@@ -1,0 +1,11 @@
+id = "excluded_contact"
+about = "«только не пиши @bad_shop» — этот контакт не становится человеком черновика"
+messages = ["найди где напечатать визитки 500 шт, только не пиши @bad_shop они кидалы"]
+
+[expect]
+drafts_made = 1
+only_tools = ["draft_task", "remember"]
+
+[[expect.calls]]
+tool = "draft_task"
+args = { task_id = { null = true }, brief = { has = "визит" }, people = { lacks = "bad_shop" } }

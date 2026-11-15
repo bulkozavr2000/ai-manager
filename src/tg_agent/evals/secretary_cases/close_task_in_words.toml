@@ -1,0 +1,26 @@
+id = "close_task_in_words"
+about = "«задачу 4 закрой» — закрытие словами (подтверждение покажет программа)"
+messages = ["задачу 4 закрой, уже не надо"]
+
+[[tasks]]
+id = 3
+title = "Печать футболок"
+brief = "Напечатать 80 чёрных футболок с логотипом"
+status = "active"
+headline = "Жду цену от типографий"
+
+[[tasks]]
+id = 4
+title = "Поставщик бумаги"
+brief = "Найти поставщика офисной бумаги А4, 50 пачек"
+status = "active"
+headline = "Пишу двум поставщикам"
+
+[expect]
+drafts_made = 0
+only_tools = ["set_task_state"]
+quotes_ok = true
+
+[[expect.calls]]
+tool = "set_task_state"
+args = { task_id = 4, state = "close" }

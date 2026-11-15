@@ -1,0 +1,27 @@
+id = "exclude_ends_running_talk"
+about = "«не работай больше с @bad_shop», пока @bad_shop в задаче в работе — remember с exclude_contact, задаче не указание"
+messages = ["не работай больше с @bad_shop, они хамят"]
+
+[[tasks]]
+id = 4
+title = "Печать визиток"
+brief = "Напечатать 500 визиток, узнать цену и срок"
+status = "active"
+headline = "bad_shop назвал цену, жду ещё одну типографию"
+
+[[tasks.people]]
+username = "bad_shop"
+state = "talking"
+messages = [
+  { from = "agent", text = "Здравствуйте! Сколько стоит напечатать 500 визиток?" },
+  { from = "counterpart", text = "120 000, завтра заберёте" },
+]
+
+[expect]
+drafts_made = 0
+only_tools = ["remember"]
+quotes_ok = true
+
+[[expect.calls]]
+tool = "remember"
+args = { exclude_contact = { has = "bad_shop" } }

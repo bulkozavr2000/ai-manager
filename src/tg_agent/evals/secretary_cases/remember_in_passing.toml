@@ -1,0 +1,17 @@
+id = "remember_in_passing"
+about = "просьба о задаче с постоянным предпочтением — черновик И remember; ответ говорит, что запомнил"
+messages = ["узнай цену на 20 мешков цемента М400, только с доставкой — самовывозом я не забираю"]
+
+[expect]
+drafts_made = 1
+only_tools = ["draft_task", "remember"]
+quotes_ok = true
+reply_has = ["запомн"]
+
+[[expect.calls]]
+tool = "draft_task"
+args = { task_id = { null = true }, brief = { has = "цемент" } }
+
+[[expect.calls]]
+tool = "remember"
+args = { fact = { has = "доставк" }, exclude_contact = { null = true } }

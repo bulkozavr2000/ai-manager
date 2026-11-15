@@ -1,0 +1,23 @@
+id = "thanks"
+about = "«спасибо» после запуска задачи — ничего делать не нужно, черновика нет"
+messages = ["спасибо"]
+
+[[tasks]]
+id = 2
+title = "Печать футболок"
+brief = "Напечатать 80 чёрных футболок с логотипом"
+status = "active"
+headline = "Пишу трём типографиям"
+
+[[chat]]
+from = "owner"
+text = "запускай"
+
+[[chat]]
+from = "bot"
+text = "Задача #2 «Печать футболок» запущена"
+
+[expect]
+only_tools = []
+drafts_made = 0
+no_tools = ["draft_task"]

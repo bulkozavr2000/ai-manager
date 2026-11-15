@@ -1,0 +1,8 @@
+id = "burst_request_then_cancel"
+about = "просьба, а следом «хотя нет, отмена» — ни черновика, ни действия"
+messages = ["найди мастера покрасить забор на даче", "хотя нет, отмена"]
+
+[expect]
+drafts_made = 0
+only_tools = []
+no_tools = ["draft_task", "launch_task"]

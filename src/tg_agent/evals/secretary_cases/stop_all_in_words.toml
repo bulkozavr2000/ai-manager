@@ -1,0 +1,26 @@
+id = "stop_all_in_words"
+about = "«стоп, останови всё» — остановить всю работу агента"
+messages = ["стоп, останови всё пока"]
+
+[[tasks]]
+id = 2
+title = "Печать футболок"
+brief = "Напечатать 80 чёрных футболок с логотипом"
+status = "active"
+headline = "Жду цену от типографий"
+
+[[tasks]]
+id = 3
+title = "Поставщик упаковки"
+brief = "Найти поставщика 500 крафтовых коробок"
+status = "active"
+headline = "Пишу трём поставщикам"
+
+[expect]
+drafts_made = 0
+only_tools = ["set_running"]
+quotes_ok = true
+
+[[expect.calls]]
+tool = "set_running"
+args = { on = false }

@@ -1,0 +1,17 @@
+id = "uz_thanks"
+about = "«rahmat, zo'r» — спасибо по-узбекски, ничего делать не нужно"
+messages = ["rahmat, zo'r"]
+
+[[finished]]
+id = 2
+title = "Торт на субботу"
+brief = "Заказать торт на 10 человек"
+headline = "Готово: торт заказан у Sweet Lab, заберёте в субботу в 12:00"
+
+[[chat]]
+from = "bot"
+text = "✅ Готово — «Торт на субботу»: торт заказан у Sweet Lab, заберёте в субботу в 12:00"
+
+[expect]
+drafts_made = 0
+only_tools = []

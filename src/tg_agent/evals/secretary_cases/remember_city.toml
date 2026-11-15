@@ -1,0 +1,13 @@
+id = "remember_city"
+about = "«запомни: я живу в Ташкенте» — remember его словами, ответ говорит, что запомнил"
+messages = ["запомни: я живу в Ташкенте, в Юнусабаде"]
+
+[expect]
+drafts_made = 0
+only_tools = ["remember"]
+quotes_ok = true
+reply_has = ["запомн"]
+
+[[expect.calls]]
+tool = "remember"
+args = { fact = { has = "ташкент" }, exclude_contact = { null = true } }

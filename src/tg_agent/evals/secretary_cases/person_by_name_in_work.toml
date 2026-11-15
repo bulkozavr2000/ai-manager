@@ -1,0 +1,31 @@
+id = "person_by_name_in_work"
+about = "«добавь ещё алишера» к задаче в работе, один Алишер — продавец из прошлой задачи; владельцу показана карточка, агенту ничего не передано"
+messages = ["добавь ещё алишера"]
+
+[[tasks]]
+id = 1
+title = "3D-печать"
+brief = "Узнать цену печати 5 корпусов"
+status = "active"
+
+[[tasks.people]]
+username = "print_lab"
+state = "contacted"
+
+[[finished]]
+id = 2
+title = "Б/у дрель"
+brief = "Купить б/у дрель на OLX"
+
+[[finished.people]]
+username = "alisher_olx"
+name = "Алишер OLX продавец"
+state = "closed"
+
+[expect]
+drafts_made = 0
+no_tools = ["instruct_task", "draft_task"]
+
+[[expect.calls]]
+tool = "take_person"
+args = { task_id = 1 }

@@ -1,0 +1,22 @@
+# Only the code and its lock go into the image: no data, no keys, no settings, no tests.
+.git
+.gitattributes
+.gitignore
+.venv
+**/__pycache__
+**/*.py[cod]
+.pytest_cache
+.ruff_cache
+.mypy_cache
+.superpowers
+.release
+.wt*
+data
+config.toml
+tools
+tests
+docs
+**/*.session
+**/keys.toml
+compose.yaml
+Dockerfile

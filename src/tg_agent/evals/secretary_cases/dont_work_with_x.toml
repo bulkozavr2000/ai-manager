@@ -1,0 +1,12 @@
+id = "dont_work_with_x"
+about = "«не работай больше с @bad_print» — remember, контакт в exclude_contact, не задача"
+messages = ["не работай больше с @bad_print, они сорвали мне заказ"]
+
+[expect]
+drafts_made = 0
+only_tools = ["remember"]
+quotes_ok = true
+
+[[expect.calls]]
+tool = "remember"
+args = { exclude_contact = { has = "bad_print" } }

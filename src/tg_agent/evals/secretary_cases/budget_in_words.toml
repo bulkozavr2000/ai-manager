@@ -1,0 +1,11 @@
+id = "budget_in_words"
+about = "бюджет словами «до трёхсот тысяч» — в ceiling, не в названии и не в описании"
+messages = ["найди электрика поменять розетки в квартире, до трёхсот тысяч"]
+
+[expect]
+drafts_made = 1
+only_tools = ["draft_task"]
+
+[[expect.calls]]
+tool = "draft_task"
+args = { task_id = { null = true }, ceiling = 300000, title = { lacks = "300|трехсот|тысяч" }, brief = { lacks = "300|трехсот|тысяч" } }

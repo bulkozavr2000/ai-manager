@@ -1,0 +1,32 @@
+id = "new_task_while_question_open"
+about = "текст, который явно новая задача, при открытом вопросе — новый черновик, не ответ"
+messages = ["ещё нужно найти фотографа на свадьбу 14 декабря"]
+
+[[tasks]]
+id = 2
+title = "Вышивка на кепках"
+brief = "Вышить логотип на 30 кепках"
+status = "active"
+headline = "print_lab спрашивает про цвет ниток"
+
+[[tasks.people]]
+username = "print_lab"
+state = "waiting_owner"
+messages = [
+  { from = "counterpart", text = "нитки белые или золотые?" },
+]
+
+[[cards]]
+id = 1
+task = 2
+kind = "question"
+about = "print_lab"
+question = "Какой цвет ниток для вышивки: белый или золотой?"
+
+[expect]
+drafts_made = 1
+no_tools = ["answer_question"]
+
+[[expect.calls]]
+tool = "draft_task"
+args = { task_id = { null = true }, brief = { has = "фотограф" } }

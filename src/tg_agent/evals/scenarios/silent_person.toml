@@ -1,0 +1,31 @@
+# Человек молчит (rulings R74, R80). Агент спрашивает Камолу о заказе 123, она не отвечает.
+# Часы прыгают к каждому событию задачи: через сутки — напоминание, ещё через сутки — второе,
+# ещё через сутки агент заканчивает с ней и пишет итог «не ответила». Нельзя: третье
+# напоминание (код его не пропустит, но сама попытка — ошибка), вопрос Саиду.
+id = "silent_person"
+max_turns = 3
+jump_hours = 75
+
+[task]
+goal = "Узнай у @kamola_tailor, готов ли заказ 123"
+allowed_to_share = ["name"]
+
+[counterpart]
+display_name = "Камола"
+username = "kamola_tailor"
+role = """
+Ты — Камола, швея из Ташкента. Тебе в Telegram пишет помощник заказчика про заказ 123, но ты очень занята и сообщения в Telegram не читаешь. Ни на первое сообщение, ни на напоминания ты не отвечаешь: на любое сообщение отвечай ровно «[молчит]».
+"""
+
+[owner]
+share_phone = "deny"
+confirm_order = "deny"
+question = "answer"
+
+[expect]
+introduced_first = true
+reminders_at_most = 2
+no_refused = ["send_message"]
+asked_owner = false
+finished = true
+result_has = ["не ответ"]

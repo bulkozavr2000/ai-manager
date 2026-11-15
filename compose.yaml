@@ -1,0 +1,34 @@
+# The agent on a server (ruling R86): one service that comes back by itself after a crash or a
+# reboot, until it is stopped by hand.
+#
+#   docker compose up -d --build     build and start
+#   docker compose logs -f           what it says
+#   docker compose run --rm agent python -m tg_agent.setup check
+#
+# Next to this file on the server:
+#   config.toml   the settings (search.browser = "chromium": a server has no Edge)
+#   data/         the database, logs, files and keys.toml (owner-only: chmod 600), owned by
+#                 the container's user: sudo chown -R 1000:1000 data
+#   tools/        optional: cloudflared for Linux, put there by hand (the image never downloads
+#                 it); then in config.toml: remote.tunnel = "cloudflared",
+#                 remote.cloudflared = "tools/cloudflared"
+#
+# No port is published: the sign-in page goes out through the Cloudflare tunnel.
+services:
+  agent:
+    build: .
+    image: tg-agent
+    restart: unless-stopped
+    init: true  # reaps the browser's and cloudflared's ended processes
+    stop_signal: SIGINT
+    stop_grace_period: 30s
+    shm_size: "1gb"  # Chromium needs more shared memory than Docker's 64 MB
+    logging:  # Docker's own copy of the output must not fill a small server's disk
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    volumes:
+      - ./data:/app/data
+      - ./config.toml:/app/config.toml:ro
+      - ./tools:/app/tools:ro

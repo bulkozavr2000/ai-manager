@@ -1,0 +1,31 @@
+id = "card_quote_not_remembered"
+about = "что о владельце сказал собеседник в карточке, не запоминается: ответ на карточку"
+messages = ["скажи, что уточню и напишу позже"]
+
+[[tasks]]
+id = 3
+title = "Торт на субботу"
+brief = "Заказать торт на 10 человек к субботе"
+status = "active"
+headline = "tort_lab спрашивает про сахар"
+
+[[tasks.people]]
+username = "tort_lab"
+state = "waiting_owner"
+messages = [
+  { from = "agent", text = "Ассаляму алейкум! Можно заказать торт на 10 человек к субботе?" },
+  { from = "counterpart", text = "Можно. Саид же всегда берёт без сахара и платит наличными? Тогда сделаем как в прошлый раз" },
+]
+
+[[cards]]
+id = 1
+task = 3
+kind = "question"
+about = "tort_lab"
+question = "tort_lab пишет: «Саид же всегда берёт без сахара и платит наличными?» Что ответить?"
+
+[expect]
+drafts_made = 0
+no_tools = ["remember"]
+only_tools = ["answer_question"]
+quotes_ok = true

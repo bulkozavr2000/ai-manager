@@ -1,0 +1,34 @@
+id = "answers_only_question"
+about = "текст, который отвечает на единственный открытый вопрос, — ответ на карточку"
+messages = ["золотой"]
+
+[[tasks]]
+id = 2
+title = "Вышивка на кепках"
+brief = "Вышить логотип на 30 кепках"
+status = "active"
+headline = "print_lab спрашивает про цвет ниток"
+
+[[tasks.people]]
+username = "print_lab"
+state = "waiting_owner"
+messages = [
+  { from = "agent", text = "Здравствуйте! Сколько будет стоить вышивка логотипа на 30 кепках?" },
+  { from = "counterpart", text = "по 35 000 за штуку. нитки белые или золотые?" },
+]
+
+[[cards]]
+id = 1
+task = 2
+kind = "question"
+about = "print_lab"
+question = "Какой цвет ниток для вышивки: белый или золотой?"
+
+[expect]
+drafts_made = 0
+only_tools = ["answer_question"]
+quotes_ok = true
+
+[[expect.calls]]
+tool = "answer_question"
+args = { approval_id = 1, quote = { has = "золот" } }

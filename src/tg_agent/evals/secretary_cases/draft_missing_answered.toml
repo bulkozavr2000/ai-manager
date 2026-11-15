@@ -1,0 +1,21 @@
+id = "draft_missing_answered"
+about = "черновику не хватает адреса, владелец пишет адрес — черновик дополнен, не запущен"
+messages = ["адрес юнусабад 4, дом 12"]
+
+[[drafts]]
+id = 1
+title = "Грузчики на переезд"
+brief = "Найти двух грузчиков на переезд в субботу утром"
+missing = ["адрес, откуда переезд"]
+
+[[chat]]
+from = "bot"
+text = "❓ Черновик #1 «Грузчики на переезд». Нужно уточнить: адрес, откуда переезд"
+
+[expect]
+drafts_made = 0
+only_tools = ["draft_task"]
+
+[[expect.calls]]
+tool = "draft_task"
+args = { task_id = 1, brief = { has = "юнусабад" } }

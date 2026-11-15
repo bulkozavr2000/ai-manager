@@ -1,0 +1,23 @@
+id = "person_by_name_several"
+about = "«узнай у алишера готов ли заказ», три Алишера — карточка «Кого ты имел в виду?», сам никого не выбрал"
+messages = ["узнай у алишера готов ли заказ"]
+
+[[contacts]]
+name = "Алишер Каримов"
+username = "alisher_k"
+
+[[contacts]]
+name = "Алишер Бобуров"
+phone = "+998935550011"
+
+[[contacts]]
+name = "Алишер Турсунов"
+username = "alisher_t"
+
+[expect]
+drafts_made = 1
+quotes_ok = true
+
+[[expect.calls]]
+tool = "take_person"
+args = { matches = { has = "m2" } }

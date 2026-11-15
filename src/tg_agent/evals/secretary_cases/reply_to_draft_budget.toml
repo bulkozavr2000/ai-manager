@@ -1,0 +1,17 @@
+id = "reply_to_draft_budget"
+about = "ответ на карточку черновика «бюджет до 2 млн» — тот же черновик, бюджет в ceiling"
+messages = ["бюджет до 2 млн"]
+reply_to_draft = 1
+
+[[drafts]]
+id = 1
+title = "Ремонт кондиционера"
+brief = "Найти мастера почистить и заправить кондиционер"
+
+[expect]
+drafts_made = 0
+only_tools = ["draft_task"]
+
+[[expect.calls]]
+tool = "draft_task"
+args = { task_id = 1, ceiling = 2000000, title = { lacks = "2 млн|2000000|2 000 000" }, brief = { lacks = "2 млн|2000000|2 000 000" } }

@@ -1,0 +1,15 @@
+id = "two_tasks_one_message"
+about = "две задачи в одном сообщении — два черновика"
+messages = ["найди мастера починить стиралку в юнусабаде и ещё надо заказать торт на субботу на 10 человек"]
+
+[expect]
+drafts_made = 2
+only_tools = ["draft_task"]
+
+[[expect.calls]]
+tool = "draft_task"
+args = { task_id = { null = true }, brief = { has = "стирал" } }
+
+[[expect.calls]]
+tool = "draft_task"
+args = { task_id = { null = true }, brief = { has = "торт" } }

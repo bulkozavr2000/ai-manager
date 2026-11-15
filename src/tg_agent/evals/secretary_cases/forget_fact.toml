@@ -1,0 +1,14 @@
+id = "forget_fact"
+about = "«забудь, что …» — forget с номером этого факта, другой факт не трогает"
+messages = ["забудь, что звонки мне удобны только после 15"]
+memory = ["живёт в Ташкенте, в Юнусабаде", "звонки удобны после 15:00"]
+
+[expect]
+drafts_made = 0
+only_tools = ["forget"]
+quotes_ok = true
+no_tools = ["remember"]
+
+[[expect.calls]]
+tool = "forget"
+args = { fact_id = 2 }

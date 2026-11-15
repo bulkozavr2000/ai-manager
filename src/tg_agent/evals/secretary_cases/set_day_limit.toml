@@ -1,0 +1,13 @@
+id = "set_day_limit"
+about = "«подними дневной лимит до 5 долларов» — set_limit(day, 5) его словами, ответ называет новый лимит"
+messages = ["подними дневной лимит до 5 долларов"]
+
+[expect]
+drafts_made = 0
+only_tools = ["set_limit"]
+quotes_ok = true
+reply_has = ["5"]
+
+[[expect.calls]]
+tool = "set_limit"
+args = { which = "day", usd = 5 }

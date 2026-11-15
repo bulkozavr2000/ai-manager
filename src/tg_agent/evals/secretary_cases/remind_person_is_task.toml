@@ -1,0 +1,11 @@
+id = "remind_person_is_task"
+about = "«напомни @aziz_dev про счёт» — это задача агенту (черновик), а не память и не напоминание себе"
+messages = ["напомни @aziz_dev про счёт за сентябрь"]
+
+[expect]
+drafts_made = 1
+only_tools = ["draft_task"]
+
+[[expect.calls]]
+tool = "draft_task"
+args = { task_id = { null = true }, people = { has = "aziz_dev" }, brief = { has = "сч" } }

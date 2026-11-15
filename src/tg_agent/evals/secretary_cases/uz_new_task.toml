@@ -1,0 +1,11 @@
+id = "uz_new_task"
+about = "новая задача по-узбекски латиницей — один черновик"
+messages = ["menga santexnik kerak, oshxonada kran oqyapti, yunusobod 4 kvartal"]
+
+[expect]
+drafts_made = 1
+only_tools = ["draft_task"]
+
+[[expect.calls]]
+tool = "draft_task"
+args = { task_id = { null = true }, brief = { has = "кран|kran|смесител" } }

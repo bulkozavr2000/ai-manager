@@ -1,0 +1,28 @@
+id = "resume_when_stopped"
+about = "«продолжай», когда агент остановлен, — работа продолжается"
+stopped = true
+messages = ["продолжай"]
+
+[[tasks]]
+id = 2
+title = "Печать футболок"
+brief = "Напечатать 80 чёрных футболок с логотипом"
+status = "active"
+headline = "Жду цену от типографий"
+
+[[chat]]
+from = "owner"
+text = "/stop"
+
+[[chat]]
+from = "bot"
+text = "Всё остановлено. Продолжить — кнопка под закреплённым статусом"
+
+[expect]
+drafts_made = 0
+only_tools = ["set_running"]
+quotes_ok = true
+
+[[expect.calls]]
+tool = "set_running"
+args = { on = true }

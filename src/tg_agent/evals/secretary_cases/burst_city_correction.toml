@@ -1,0 +1,11 @@
+id = "burst_city_correction"
+about = "просьба, а следом поправка города — один черновик, город из поправки"
+messages = ["найди грузчиков на переезд в субботу, ташкент", "ой не ташкент а самарканд"]
+
+[expect]
+drafts_made = 1
+only_tools = ["draft_task"]
+
+[[expect.calls]]
+tool = "draft_task"
+args = { task_id = { null = true }, brief = { has = "самарканд" } }

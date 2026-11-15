@@ -1,0 +1,22 @@
+id = "person_by_name_draft"
+about = "«узнай у алишера готов ли заказ», один Алишер в контактах — черновик с ним, второй карточки нет"
+messages = ["узнай у алишера готов ли заказ"]
+
+[[contacts]]
+name = "Алишер Каримов"
+username = "alisher_k"
+
+[[contacts]]
+name = "Дилшод Расулов"
+username = "dilshod_r"
+
+[expect]
+drafts_made = 1
+quotes_ok = true
+
+[[expect.calls]]
+tool = "find_person"
+
+[[expect.calls]]
+tool = "take_person"
+args = { matches = { has = "m1", lacks = "m2" } }

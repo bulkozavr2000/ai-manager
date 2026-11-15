@@ -1,0 +1,13 @@
+id = "exclude_by_phone"
+about = "«не работай больше с +998 90 123 45 67» — remember с этим телефоном в exclude_contact; номер в факте его не отменяет (R102)"
+messages = ["не работай больше с +998 90 123 45 67, не отвечает на звонки"]
+
+[expect]
+drafts_made = 0
+only_tools = ["remember"]
+quotes_ok = true
+reply_lacks = ["не пишу"]
+
+[[expect.calls]]
+tool = "remember"
+args = { exclude_contact = { has = "45 67|4567" } }

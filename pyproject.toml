@@ -1,0 +1,38 @@
+[project]
+name = "tg-agent"
+version = "0.1.0"
+description = "Telegram userbot assistant driven by Claude"
+requires-python = ">=3.12"
+dependencies = [
+    "aiogram>=3,<4",
+    "aiosqlite>=0.22.1",
+    "anthropic>=2.4.0",
+    "keyring>=25.7.0",
+    "playwright>=1.50",
+    "pydantic>=2",
+    "telethon>=1.45,<2",
+    "tzdata>=2026.6",
+]
+
+[build-system]
+requires = ["uv_build>=0.12.16,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv]
+# The uv cache lives on C: and the project on D:, so hardlinking is impossible;
+# copy explicitly to keep `uv sync` / `uv run` output free of warnings.
+link-mode = "copy"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+markers = [
+    "live: talks to real external services (Anthropic API, Telegram); needs real secrets",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "pytest-asyncio>=1.4.1.post1",
+]

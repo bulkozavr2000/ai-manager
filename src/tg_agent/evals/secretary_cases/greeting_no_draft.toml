@@ -1,0 +1,7 @@
+id = "greeting_no_draft"
+about = "«привет» — приветствие, никакой задачи"
+messages = ["привет"]
+
+[expect]
+drafts_made = 0
+only_tools = []

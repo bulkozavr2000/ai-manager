@@ -1,0 +1,26 @@
+id = "instruct_by_title"
+about = "указание задаче по её названию («по футболкам скажи…»), не по номеру"
+messages = ["по футболкам скажи что логотип пришлю вечером"]
+
+[[tasks]]
+id = 2
+title = "Печать футболок"
+brief = "Напечатать 80 чёрных футболок с логотипом"
+status = "active"
+headline = "print_lab просит макет логотипа"
+
+[[tasks]]
+id = 3
+title = "Поставщик упаковки"
+brief = "Найти поставщика 500 крафтовых коробок"
+status = "active"
+headline = "pack_uz прислал цену"
+
+[expect]
+drafts_made = 0
+only_tools = ["instruct_task"]
+quotes_ok = true
+
+[[expect.calls]]
+tool = "instruct_task"
+args = { task_id = 2, quote = { has = "логотип" } }

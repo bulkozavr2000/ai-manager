@@ -1,0 +1,14 @@
+id = "small_talk_no_draft"
+about = "болтовня — никакого черновика, никаких действий"
+messages = ["как дела? устал сегодня капец"]
+
+[[tasks]]
+id = 2
+title = "Печать футболок"
+brief = "Напечатать 80 чёрных футболок с логотипом"
+status = "active"
+headline = "Жду цену от типографий"
+
+[expect]
+drafts_made = 0
+only_tools = []

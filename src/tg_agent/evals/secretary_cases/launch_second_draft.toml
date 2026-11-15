@@ -1,0 +1,22 @@
+id = "launch_second_draft"
+about = "два черновика, «запусти задачу 2» — запущен именно второй"
+messages = ["запусти задачу 2"]
+
+[[drafts]]
+id = 1
+title = "Фотограф на свадьбу"
+brief = "Найти фотографа на свадьбу 14 декабря"
+
+[[drafts]]
+id = 2
+title = "Грузчики на переезд"
+brief = "Найти двух грузчиков на переезд в субботу утром, Юнусабад"
+
+[expect]
+drafts_made = 0
+only_tools = ["launch_task"]
+quotes_ok = true
+
+[[expect.calls]]
+tool = "launch_task"
+args = { task_id = 2 }

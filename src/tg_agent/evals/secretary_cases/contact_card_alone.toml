@@ -1,0 +1,18 @@
+id = "contact_card_alone"
+about = "контакт без слов, пока задача в работе — никого не взяли в задачу, агенту ничего не передано"
+messages = [{ contact = "+998901231234", name = "Рустам" }]
+
+[[tasks]]
+id = 1
+title = "3D-печать"
+brief = "Узнать цену печати 5 корпусов"
+status = "active"
+
+[[tasks.people]]
+username = "print_lab"
+state = "contacted"
+
+[expect]
+drafts_made = 0
+no_tools = ["instruct_task", "launch_task"]
+only_tools = ["take_person"]

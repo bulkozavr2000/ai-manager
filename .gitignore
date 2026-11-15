@@ -1,0 +1,28 @@
+.superpowers/
+
+# runtime data and secrets: never in git (secrets live in the OS keyring, or in keys.toml
+# on a server with none)
+/data/
+/config.toml
+*.session
+keys.toml
+
+# environments and caches
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+
+# a downloaded program (the tunnel), not part of the source
+/tools/
+
+# local git worktrees and editor/OS leftovers
+/.wt*/
+/.release/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

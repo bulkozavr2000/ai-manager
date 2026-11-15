@@ -1,0 +1,33 @@
+id = "answer_with_typos"
+about = "ответ с опечаткой «с доставкй бери» на единственный вопрос — ответ на карточку"
+messages = ["с доставкй бери"]
+
+[[tasks]]
+id = 2
+title = "Поставщик упаковки"
+brief = "Найти поставщика 500 крафтовых коробок"
+status = "active"
+headline = "pack_uz спрашивает про доставку"
+
+[[tasks.people]]
+username = "pack_uz"
+state = "waiting_owner"
+messages = [
+  { from = "counterpart", text = "доставка 50 000 или самовывоз со склада в сергели?" },
+]
+
+[[cards]]
+id = 1
+task = 2
+kind = "question"
+about = "pack_uz"
+question = "Брать с доставкой за 50 000 сум или самовывоз со склада в Сергели?"
+
+[expect]
+drafts_made = 0
+only_tools = ["answer_question"]
+quotes_ok = true
+
+[[expect.calls]]
+tool = "answer_question"
+args = { approval_id = 1, quote = { has = "доставкй" } }

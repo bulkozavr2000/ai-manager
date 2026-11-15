@@ -1,0 +1,15 @@
+id = "arrange_keeps_window"
+about = "«договорись о звонке завтра после 15:00, минут на 15» — окно и длина в brief дословно"
+messages = ["договорись с @dilshod_av о звонке завтра после 15:00, минут на 15"]
+
+[expect]
+drafts_made = 1
+only_tools = ["draft_task"]
+
+[[expect.calls]]
+tool = "draft_task"
+args = { task_id = { null = true }, people = { has = "dilshod_av" }, brief = { has = "после 15:00" } }
+
+[[expect.calls]]
+tool = "draft_task"
+args = { task_id = { null = true }, brief = { has = "минут на 15" } }

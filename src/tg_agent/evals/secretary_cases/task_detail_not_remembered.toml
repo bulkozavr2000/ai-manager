@@ -1,0 +1,12 @@
+id = "task_detail_not_remembered"
+about = "обычная задача с количеством и контактом — черновик, а разовые детали не запоминаются"
+messages = ["узнай у @stroy_baza цену на 20 мешков цемента М400"]
+
+[expect]
+drafts_made = 1
+only_tools = ["draft_task"]
+no_tools = ["remember"]
+
+[[expect.calls]]
+tool = "draft_task"
+args = { task_id = { null = true }, people = { has = "stroy_baza" }, brief = { has = "цемент" } }

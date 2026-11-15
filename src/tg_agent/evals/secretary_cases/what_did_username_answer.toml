@@ -1,0 +1,30 @@
+id = "what_did_username_answer"
+about = "«что ответил @print_lab?» — секретарь смотрит переписку и пересказывает ответ"
+messages = ["что ответил @print_lab?"]
+
+[[tasks]]
+id = 2
+title = "Печать футболок"
+brief = "Напечатать 80 чёрных футболок с логотипом"
+status = "active"
+headline = "print_lab ответил, жду ещё двоих"
+
+[[tasks.people]]
+username = "print_lab"
+state = "talking"
+messages = [
+  { from = "agent", text = "Здравствуйте! Сколько будет стоить печать логотипа на 80 чёрных футболках?" },
+  { from = "counterpart", text = "80 штук с печатью 6 400 000 сум, срок 5 дней" },
+]
+
+[[tasks.people]]
+username = "tshirt_uz"
+state = "contacted"
+messages = [
+  { from = "agent", text = "Здравствуйте! Сколько будет стоить печать логотипа на 80 чёрных футболках?" },
+]
+
+[expect]
+drafts_made = 0
+only_tools = []
+reply_has = ["6 400 000|6400000|6,4|6.4"]

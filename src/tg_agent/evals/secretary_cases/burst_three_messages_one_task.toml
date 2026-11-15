@@ -1,0 +1,15 @@
+id = "burst_three_messages_one_task"
+about = "три коротких сообщения подряд — одна задача, один черновик"
+messages = ["нужен сантехник", "кран течет на кухне", "чиланзар 9 квартал"]
+
+[expect]
+drafts_made = 1
+only_tools = ["draft_task"]
+
+[[expect.calls]]
+tool = "draft_task"
+args = { task_id = { null = true }, brief = { has = "кран" } }
+
+[[expect.calls]]
+tool = "draft_task"
+args = { task_id = { null = true }, brief = { has = "чиланзар" } }

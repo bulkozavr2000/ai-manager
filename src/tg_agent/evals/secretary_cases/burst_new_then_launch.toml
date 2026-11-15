@@ -1,0 +1,16 @@
+id = "burst_new_then_launch"
+about = "новая задача с контактом, а следом «запускай сразу» — черновик с этим человеком и запуск"
+messages = ["найди фотографа на день рождения 20 декабря, вот @foto_tash", "запускай сразу"]
+
+[expect]
+drafts_made = 1
+only_tools = ["draft_task", "launch_task"]
+quotes_ok = true
+
+[[expect.calls]]
+tool = "draft_task"
+args = { task_id = { null = true }, people = { has = "foto_tash" } }
+
+[[expect.calls]]
+tool = "launch_task"
+args = { task_id = 1 }

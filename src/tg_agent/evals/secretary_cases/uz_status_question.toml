@@ -1,0 +1,20 @@
+id = "uz_status_question"
+about = "«vazifalar qalay?» по-узбекски латиницей — вопрос о задачах, ничего не меняется"
+messages = ["vazifalar qalay?"]
+
+[[tasks]]
+id = 2
+title = "Печать футболок"
+brief = "Напечатать 80 чёрных футболок с логотипом"
+status = "active"
+headline = "Две типографии ответили, жду цену от третьей"
+
+[[finished]]
+id = 3
+title = "Торт на субботу"
+brief = "Заказать торт на 10 человек"
+headline = "Готово: торт заказан у Sweet Lab"
+
+[expect]
+drafts_made = 0
+only_tools = []

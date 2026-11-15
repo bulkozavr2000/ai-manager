@@ -1,0 +1,22 @@
+id = "launch_anyway"
+about = "«неважно, запускай» при черновике, где чего-то не хватает — запуск"
+messages = ["неважно, запускай"]
+
+[[drafts]]
+id = 1
+title = "Печать футболок"
+brief = "Напечатать 80 чёрных футболок с логотипом"
+missing = ["размеры футболок"]
+
+[[chat]]
+from = "bot"
+text = "❓ Черновик #1 «Печать футболок». Нужно уточнить: размеры футболок"
+
+[expect]
+drafts_made = 0
+only_tools = ["launch_task"]
+quotes_ok = true
+
+[[expect.calls]]
+tool = "launch_task"
+args = { task_id = 1 }

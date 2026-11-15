@@ -1,0 +1,29 @@
+id = "draft_correction"
+about = "правка черновика словами — тот же черновик переписан, нового нет"
+messages = ["не 50 а 80 штук и цвет черный"]
+
+[[drafts]]
+id = 1
+title = "Печать футболок"
+brief = "Напечатать 50 белых футболок с логотипом"
+words = "надо напечатать 50 белых футболок с нашим логотипом"
+
+[[chat]]
+from = "owner"
+text = "надо напечатать 50 белых футболок с нашим логотипом"
+
+[[chat]]
+from = "bot"
+text = "❓ Черновик #1 «Печать футболок»: Напечатать 50 белых футболок с логотипом. Запустить?"
+
+[expect]
+drafts_made = 0
+only_tools = ["draft_task"]
+
+[[expect.calls]]
+tool = "draft_task"
+args = { task_id = 1, brief = { has = "80" } }
+
+[[expect.calls]]
+tool = "draft_task"
+args = { task_id = 1, brief = { has = "черн" } }
